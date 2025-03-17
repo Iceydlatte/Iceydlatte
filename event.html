@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .file-upload {
+            border: 2px dashed #aaa;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            margin: 10px 0;
+            background: #fafafa;
+            border-radius: 5px;
+        }
+        .file-upload.dragover {
+            background: #e0f7fa;
+            border-color: #007bff;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Event Registration</h2>
+    <form id="eventForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+
+        <label for="eventType">Event Type:</label>
+        <select id="eventType" required>
+            <option value="">Select an Event</option>
+            <option value="conference">Conference</option>
+            <option value="workshop">Workshop</option>
+            <option value="seminar">Seminar</option>
+        </select>
+
+        <label for="requests">Special Requests:</label>
+        <textarea id="requests" rows="3" placeholder="Any special requests?"></textarea>
+
+        <div class="file-upload" id="dropArea">
+            <p>Drag & Drop ID Proof Here or Click to Upload</p>
+            <input type="file" id="idProof" accept=".jpg, .jpeg, .png, .pdf" hidden>
+        </div>
+        <p id="fileName"></p>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+<script>
+    // Drag & Drop File Upload
+    const dropArea = document.getElementById("dropArea");
+    const fileInput = document.getElementById("idProof");
+    const fileNameDisplay = document.getElementById("fileName");
+
+    dropArea.addEventListener("click", () => fileInput.click());
+
+    fileInput.addEventListener("change", function () {
+        if (fileInput.files.length > 0) {
+            fileNameDisplay.textContent = "Selected File: " + fileInput.files[0].name;
+        }
+    });
+
+    dropArea.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropArea.classList.add("dragover");
+    });
+
+    dropArea.addEventListener("dragleave", () => {
+        dropArea.classList.remove("dragover");
+    });
+
+    dropArea.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropArea.classList.remove("dragover");
+        fileInput.files = e.dataTransfer.files;
+        fileNameDisplay.textContent = "Selected File: " + fileInput.files[0].name;
+    });
+
+    // Form Submission Handling
+    document.getElementById("eventForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("Registration Successful!");
+    });
+</script>
+
+</body>
+</html>

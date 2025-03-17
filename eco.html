@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Checkout Form</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-top: 10px;
+            color: #555;
+            text-align: left;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 8px;
+            background: #f4f4f4;
+            font-size: 14px;
+        }
+        .radio-group {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+        .radio-group label {
+            font-weight: normal;
+        }
+        button {
+            width: 100%;
+            background: #ff758c;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s ease;
+            margin-top: 15px;
+        }
+        button:hover {
+            background: #ff5f6d;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" method="POST">
+        <h2>E-Commerce Checkout</h2>
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+        
+        <label for="contact">Contact Details:</label>
+        <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" required placeholder="Enter 10-digit number">
+        
+        <label>Payment Method:</label>
+        <div class="radio-group">
+            <input type="radio" id="credit" name="payment" value="Credit Card" required>
+            <label for="credit">Credit Card</label>
+            <input type="radio" id="paypal" name="payment" value="PayPal">
+            <label for="paypal">PayPal</label>
+            <input type="radio" id="cod" name="payment" value="Cash on Delivery">
+            <label for="cod">Cash on Delivery</label>
+        </div>
+        
+        <label for="order-notes">Order Notes:</label>
+        <textarea id="order-notes" name="order_notes" rows="4"></textarea>
+        
+        <button type="submit">Place Order</button>
+    </form>
+</body>
+</html>
